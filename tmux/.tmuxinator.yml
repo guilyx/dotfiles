@@ -1,0 +1,23 @@
+
+name: netbox-gui
+root: ./
+startup_window: main
+pre_window: source ~/.bashrc
+tmux_options: -f /netbox-gui/.tmux.conf
+windows:
+  - netbox: 
+      layout: tiled
+      panes:
+        - cd /netbox-gui/netbox-client-arrc-latest/lib/bin; ./netbox -P 12350
+  - swarm-gui:
+      layout: tiled
+      panes:
+        - sleep 1; cd /netbox-gui/NetboxGui/build; ./netbox_gui_cs
+  - health-monitor:
+      layout: tiled
+      panes:
+        - sleep 1; cd /netbox-gui/HealthMonitor/src; python3 main.py
+  - debug: 
+      layout: tiled
+      panes:
+        - source ~/.bashrc; cd
